@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sounddevice-study"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = "~=3.13.0"
+keywords = []
+authors = [
+  { name = "Lee Chung Gak", email = "cglee@ecstel.co.kr" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+  "sounddevice~=0.5.0",
+  "soundfile~=0.13.0",
+  "numpy~=2.2.0",
+]
+
+[project.urls]
+Documentation = "https://github.com/Lee Chung Gak/sounddevice-study#readme"
+Issues = "https://github.com/Lee Chung Gak/sounddevice-study/issues"
+Source = "https://github.com/Lee Chung Gak/sounddevice-study"
+
+[tool.hatch.version]
+path = "src/sounddevice_study/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/sounddevice_study tests}"
+
+[tool.coverage.run]
+source_pkgs = ["sounddevice_study", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/sounddevice_study/__about__.py",
+]
+
+[tool.coverage.paths]
+sounddevice_study = ["src/sounddevice_study", "*/sounddevice-study/src/sounddevice_study"]
+tests = ["tests", "*/sounddevice-study/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
